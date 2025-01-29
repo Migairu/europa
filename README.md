@@ -1,4 +1,4 @@
-# Europa - Military Grade End-to-End Encrypted File Sharing
+# Europa - End-to-End Encrypted File Sharing
 
 <div align="center">
 
@@ -8,13 +8,13 @@
 
 </div>
 
-Europa is a high-security, end-to-end encrypted file sharing platform built with ASP.NET Core 8. It provides military-grade encryption for file transfers while maintaining simplicity and ease of use.
+Europa is a high-security, end-to-end encrypted file-sharing platform built with ASP.NET Core 8. It provides advanced encryption for file transfers while maintaining simplicity and ease of use.
 
 ![Europa Screenshot](https://assets.migairu.com/images/714e83a9-cc8f-4199-b747-0678aaf54164.avif)
 
 ## ✨ Features
 
-- **End-to-End Encryption**: Military-grade AES-256-GCM encryption with PBKDF2 key derivation
+- **End-to-End Encryption**: AES-256-GCM encryption with PBKDF2 key derivation
 - **Zero Knowledge**: Files are encrypted client-side; the server never sees the unencrypted content
 - **No Registration Required**: Share files instantly without creating an account
 - **Large File Support**: Upload files up to 2GB with chunked upload support
