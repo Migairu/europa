@@ -165,7 +165,7 @@ Europa is a high-security, end-to-end encrypted file-sharing platform built with
 - XSS protection headers
 - Auto-expiring file links
 
-## 🛠Built With
+## Built With
 
 - ASP.NET Core 8.0 MVC
 - Entity Framework Core
