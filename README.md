@@ -13,7 +13,7 @@ Europa is a high-security, end-to-end encrypted file-sharing platform built with
 
 ![Europa Screenshot](https://assets.migairu.com/images/714e83a9-cc8f-4199-b747-0678aaf54164.avif)
 
-## ✨ Features
+## Features
 
 - **End-to-End Encryption**: AES-256-GCM encryption with PBKDF2 key derivation
 - **Zero Knowledge**: Files are encrypted client-side; the server never sees the unencrypted content
@@ -24,7 +24,7 @@ Europa is a high-security, end-to-end encrypted file-sharing platform built with
 - **Rate Limiting**: Built-in protection against abuse
 - **Mobile Friendly**: Responsive design works on all devices
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -62,7 +62,7 @@ Europa is a high-security, end-to-end encrypted file-sharing platform built with
    dotnet run
    ```
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 ### Prerequisites for Docker
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed on your machine
@@ -153,7 +153,7 @@ Europa is a high-security, end-to-end encrypted file-sharing platform built with
    docker-compose up --build
    ```
 
-## 🔒 Security Features
+## Security Features
 
 - PBKDF2 with 100,000 iterations for key derivation
 - AES-256-GCM for file encryption
@@ -165,7 +165,7 @@ Europa is a high-security, end-to-end encrypted file-sharing platform built with
 - XSS protection headers
 - Auto-expiring file links
 
-## 🛠️ Built With
+## 🛠Built With
 
 - ASP.NET Core 8.0 MVC
 - Entity Framework Core
@@ -175,7 +175,7 @@ Europa is a high-security, end-to-end encrypted file-sharing platform built with
 - Bootstrap 5
 - SQL Server
 
-## 📝 API Documentation
+## API Documentation
 
 Europa provides a simple API for file operations:
 
@@ -185,7 +185,7 @@ Europa provides a simple API for file operations:
 - `GET /d/{id}` - Download file page
 - `GET /download-file/{fileId}` - Download encrypted file
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
@@ -195,18 +195,18 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📜 License
+## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
-## 🌟 Acknowledgments
+## Acknowledgments
 
 - [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/)
 - [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/)
 - [Web Crypto API](https://developer.mozilla.org/docs/Web/API/Web_Crypto_API)
 - [Hangfire](https://www.hangfire.io/)
 
-## 📧 Contact
+## Contact
 
 Juan Miguel Giraldo - [@jgiraldo29](https://x.com/jgiraldo29)
  
@@ -216,6 +216,6 @@ Project Link: [https://github.com/Migairu/europa](https://github.com/Migairu/eur
 
 <div align="center">
 
-Made with ❤️ by [Migairu Corp.](https://www.migairu.com)
+Made by [Migairu Corp.](https://www.migairu.com)
 
 </div>
