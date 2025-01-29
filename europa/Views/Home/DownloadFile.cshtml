@@ -1,0 +1,252 @@
+﻿@model FileInfo
+@{
+    ViewData["Title"] = "Migairu Europa";
+}
+<section class="main-body">
+    <div class="general-body">
+        <div class="general-hero">
+            <canvas id="particle-canvas"></canvas>
+            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="150" height="150">
+                <title>Migairu Europa</title>
+                <defs>
+                    <image width="149" height="370" id="img1" href="data:image/png;base64,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" />
+                    <image width="212" height="438" id="img2" href="data:image/png;base64,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" />
+                </defs>
+                <style>
+                </style>
+                <use id="Background" href="#img1" x="69" y="65" />
+                <use id="Layer 1" href="#img2" x="250" y="31" />
+            </svg>
+            <h1 class="main-page-title">Migairu <span class="accent">Europa</span></h1>
+            <p class="main-page-subtitle">Military grade End-to-End Encrypted file sharing.</p>
+            <div class="upload-box">
+                <div id="uploadForm">
+                    <p id="downloadWarning" class="download-warning">Your file is ready for download. Remember to check who sent you this file before you download it.</p>
+                    <p>Expiration date: @Model.ExpirationDate.ToLocalTime()</p>
+                    <button class="upload-button" id="downloadButton" data-fileid="@Model.FileId">Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+<script>
+    function togglePasswordVisibility(fieldId) {
+        var passwordInput = document.getElementById(fieldId);
+        var eyeOpenIcon = passwordInput.nextElementSibling.querySelector('.eye-open');
+        var eyeClosedIcon = passwordInput.nextElementSibling.querySelector('.eye-closed');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeOpenIcon.style.display = 'block';
+            eyeClosedIcon.style.display = 'none';
+        } else {
+            passwordInput.type = 'password';
+            eyeOpenIcon.style.display = 'none';
+            eyeClosedIcon.style.display = 'block';
+        }
+    }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const downloadButton = document.getElementById('downloadButton');
+        const passphraseForm = document.getElementById('passphraseForm');
+        const passphraseInput = document.getElementById('passphraseInput');
+        const submitPassphrase = document.getElementById('submitPassphrase');
+        const fileId = downloadButton.dataset.fileid;
+        let passphrase = decodeURIComponent(window.location.hash.slice(1));
+
+        if (passphraseForm) {
+            submitPassphrase.addEventListener('click', function () {
+                passphrase = passphraseInput.value;
+                if (passphrase) {
+                    passphraseForm.style.display = 'none';
+                    downloadButton.style.display = 'block';
+                } else {
+                    showErrorNotification('Please enter a passphrase.');
+                }
+            });
+        }
+
+        downloadButton.addEventListener('click', async () => {
+            showLoadingStage(1);
+
+            if (!passphrase) {
+                showErrorNotification('The passphrase is missing. Please add the passphrase to the URL after a # symbol. (e.g. www.europa.migairu.com/d/abc123#your-passkey).');
+                hideLoadingIndicator();
+                return;
+            }
+
+            try {
+                const response = await fetch(`/download-file/${fileId}`);
+                const downloadWarning = document.getElementById('downloadWarning');
+                if (!response.ok) {
+                    showErrorNotification('Download failed. Please try again.');
+                    hideLoadingIndicator();
+                }
+
+                const encryptedData = await response.arrayBuffer();
+                const ivBase64 = response.headers.get('X-IV');
+                const saltBase64 = response.headers.get('X-Salt');
+                const isMultiFile = response.headers.get('X-Is-Multi-File') === 'true';
+
+                const iv = new Uint8Array(atob(ivBase64).split('').map(char => char.charCodeAt(0)));
+                const salt = new Uint8Array(atob(saltBase64).split('').map(char => char.charCodeAt(0)));
+
+                const { metadata, fileContent } = await decryptFileAndMetadata(encryptedData, iv, salt, passphrase);
+
+                if (isMultiFile) {
+                    const zip = await JSZip.loadAsync(fileContent);
+                    const zipBlob = await zip.generateAsync({ type: "blob" });
+                    const url = URL.createObjectURL(zipBlob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = "downloaded_files.zip";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    downloadWarning.textContent = 'Your file is ready! Please wait for your download to start.';
+                    hideLoadingIndicator();
+                } else {
+                    const blob = new Blob([fileContent], { type: metadata.fileType });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = metadata.fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    downloadWarning.textContent = 'Your file is ready! Please wait for your download to start.';
+                    hideLoadingIndicator();
+                }
+            } catch (error) {
+                showErrorNotification('Decryption failed. The file may be corrupted or the passphrase is incorrect.');
+                hideLoadingIndicator();
+            }
+        });
+
+        function showLoadingStage(stage) {
+            $('#optional-custom-loading-indicator').fadeIn(300);
+            $('.stage').hide();
+            $(`.stage-${stage}`).fadeIn(300);
+        }
+
+        function hideLoadingIndicator() {
+            $('#optional-custom-loading-indicator').fadeOut(300);
+        }
+
+        function showErrorNotification(message) {
+            const errorNotification = document.getElementById('errorNotification');
+            const errorMessage = document.getElementById('errorMessage');
+
+            errorMessage.textContent = message;
+            errorNotification.classList.add('show');
+
+            setTimeout(() => {
+                errorNotification.classList.remove('show');
+            }, 5000);
+        }
+    });
+</script>
+<script>
+    const text = "Decrypting your file...";
+    const encryptionText = document.getElementById('decryptionText');
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%^&*()_+{}[]|;:,.<>?';
+
+    function scrambleText() {
+        let result = '';
+        for (let i = 0; i < text.length; i++) {
+            if (text[i] === ' ') {
+                result += ' ';
+            } else {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+        }
+        encryptionText.textContent = result;
+    }
+
+    function animateText() {
+        let iterations = 0;
+        const interval = setInterval(() => {
+            scrambleText();
+            iterations++;
+            if (iterations >= 20) {
+                clearInterval(interval);
+                encryptionText.textContent = text;
+                setTimeout(animateText, 2000);
+            }
+        }, 50);
+    }
+
+    animateText();
+</script>
+<script>
+    const svg = document.getElementById('space-2');
+    const ns = "http://www.w3.org/2000/svg";
+
+    function createCustomSun(cx, cy, size) {
+        const sun = document.createElementNS(ns, 'use');
+        sun.setAttributeNS(null, 'href', '#customSun');
+        sun.setAttributeNS(null, 'x', cx - size / 2);
+        sun.setAttributeNS(null, 'y', cy - size / 2);
+        sun.setAttributeNS(null, 'width', size);
+        sun.setAttributeNS(null, 'height', size);
+        svg.appendChild(sun);
+        return sun;
+    }
+
+    function createOrbit(cx, cy, r) {
+        const orbit = document.createElementNS(ns, 'circle');
+        orbit.setAttribute('cx', cx);
+        orbit.setAttribute('cy', cy);
+        orbit.setAttribute('r', r);
+        orbit.setAttribute('fill', 'none');
+        orbit.setAttribute('stroke', '#ffffff33');
+        svg.appendChild(orbit);
+    }
+
+    function createDataPacket() {
+        const packet = document.createElementNS(ns, 'circle');
+        packet.setAttribute('r', 5);
+        packet.setAttribute('fill', '#ffffff');
+        svg.appendChild(packet);
+        return packet;
+    }
+
+    const centerX = 500, centerY = 500;
+    const sun = createCustomSun(centerX, centerY, 150);
+    createOrbit(centerX, centerY, 250);
+    createOrbit(centerX, centerY, 350);
+    createOrbit(centerX, centerY, 450);
+
+    const packets = [];
+    for (let i = 0; i < 50; i++) {
+        const packet = createDataPacket();
+        const orbit = 250 + (i % 3) * 100;
+        const angle = Math.random() * Math.PI * 2;
+        packet.orbit = orbit;
+        packet.angle = angle;
+        packet.speed = 0.02 - (orbit - 250) / 10000;
+        packets.push(packet);
+    }
+
+    function animate() {
+        packets.forEach(packet => {
+            packet.angle += packet.speed;
+            const x = centerX + Math.cos(packet.angle) * packet.orbit;
+            const y = centerY + Math.sin(packet.angle) * packet.orbit;
+            packet.setAttribute('cx', x);
+            packet.setAttribute('cy', y);
+
+            const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+            const opacity = 1 - (distance - 200) / 250;
+            packet.setAttribute('fill-opacity', opacity);
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
