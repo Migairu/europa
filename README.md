@@ -216,6 +216,6 @@ Project Link: [https://github.com/Migairu/europa](https://github.com/Migairu/eur
 
 <div align="center">
 
-Made by [Migairu Corp.](https://www.migairu.com)
+[Migairu Corp.](https://www.migairu.com)
 
 </div>
