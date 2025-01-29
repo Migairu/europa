@@ -61,6 +61,97 @@ Europa is a high-security, end-to-end encrypted file-sharing platform built with
    dotnet run
    ```
 
+## 🐳 Docker Deployment
+
+### Prerequisites for Docker
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed on your machine
+- WSL 2 (Windows Subsystem for Linux) if using Windows
+- At least 4GB of RAM available
+- Virtualization enabled in BIOS
+
+### Step-by-Step Docker Setup
+
+1. **Install Docker Desktop**:
+   - Download Docker Desktop from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+   - Run the installer
+   - Restart your computer after installation
+   - Verify installation by running:
+     ```bash
+     docker --version
+     ```
+
+2. **Configure SSL Certificate** (required for HTTPS):
+   ```powershell
+   # Create directory for certificates
+   mkdir $env:USERPROFILE/.aspnet/https -Force
+
+   # Generate development certificate
+   dotnet dev-certs https -ep $env:USERPROFILE/.aspnet/https/aspnetapp.pfx -p Your_Password123
+
+   # Trust the certificate
+   dotnet dev-certs https --trust
+   ```
+
+3. **Build the Docker Image**:
+   ```bash
+   # Navigate to project directory
+   cd europa
+
+   # Build the image
+   docker build -t europa .
+   ```
+
+4. **Run the Container**:
+   ```powershell
+   docker run -p 8080:80 -p 8443:443 `
+       -e ASPNETCORE_URLS="http://+:80;https://+:443" `
+       -e ASPNETCORE_HTTPS_PORT=8443 `
+       -e ASPNETCORE_Kestrel__Certificates__Default__Password="Your_Password123" `
+       -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx `
+       -e ConnectionStrings__DefaultConnection="your_sql_connection_string" `
+       -e AzureStorageConfig__ConnectionString="your_azure_storage_connection_string" `
+       -v $env:USERPROFILE/.aspnet/https:/https/ `
+       europa
+   ```
+
+5. **Access the Application**:
+   - HTTP: [http://localhost:8080](http://localhost:8080)
+   - HTTPS: [https://localhost:8443](https://localhost:8443)
+
+### Using Docker Compose (Alternative Method)
+
+1. **Create docker-compose.yml**:
+   ```yaml
+   version: '3.8'
+
+   services:
+     webapp:
+       build:
+         context: .
+         dockerfile: Dockerfile
+       ports:
+         - "8080:80"
+         - "8443:443"
+       environment:
+         - ASPNETCORE_ENVIRONMENT=Production
+         - ASPNETCORE_URLS=https://+:443;http://+:80
+         - ASPNETCORE_HTTPS_PORT=8443
+         - ASPNETCORE_Kestrel__Certificates__Default__Password=Your_Password123
+         - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+         - ConnectionStrings__DefaultConnection=your_sql_connection_string
+         - AzureStorageConfig__ConnectionString=your_azure_storage_connection_string
+       volumes:
+         - ${USERPROFILE}/.aspnet/https:/https/
+
+   volumes:
+     sqldata:
+   ```
+
+2. **Run with Docker Compose**:
+   ```bash
+   docker-compose up --build
+   ```
+
 ## 🔒 Security Features
 
 - PBKDF2 with 100,000 iterations for key derivation
